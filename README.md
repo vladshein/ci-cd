@@ -1,2 +1,2 @@
-# ci-cd-lesson3
-Home work #3
+# ci-cd
+CICD home works
