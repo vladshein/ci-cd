@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-west-2"
+}
+
 # Підключаємо модуль S3 та DynamoDB
 module "s3_backend" {
   source      = "./modules/s3-backend"
