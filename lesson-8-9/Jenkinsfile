@@ -17,6 +17,13 @@ spec:
         - sleep
       args:
         - 99d
+      volumeMounts:               
+        - name: ecr-secret
+          mountPath: /kaniko/.docker
+  volumes:                       
+    - name: ecr-secret
+      secret:
+        secretName: ecr-docker-config
 """
     }
   }
@@ -24,21 +31,25 @@ spec:
   environment {
     ECR_REGISTRY = "397114334021.dkr.ecr.us-west-2.amazonaws.com"
     IMAGE_NAME   = "app"
-    IMAGE_TAG    = "latest"
+    IMAGE_TAG    = "$(git rev-parse --short HEAD)"
   }
 
   stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
     stage('Build & Push Docker Image') {
       steps {
         container('kaniko') {
           sh '''
-            /kaniko/executor \\
-              --context `pwd` \\
-              --dockerfile `pwd`/Dockerfile \\
-              --destination=$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG \\
-              --cache=true \\
-              --insecure \\
-              --skip-tls-verify
+            /kaniko/executor \
+              --context `pwd` \
+              --dockerfile `pwd`/Dockerfile \
+              --destination=$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG \
+              --cache=true
           '''
         }
       }
