@@ -1,0 +1,21 @@
+replicaCount: 2
+
+image:
+  repository: <account_id>.dkr.ecr.us-west-2.amazonaws.com/lesson-5-ecr
+  tag: "latest"
+  pullPolicy: ifNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8000
+
+autoscaler:
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70
+
+env:
+  DJANGO_SECRET_KEY: "supersecret"
+  DJANGO_DEBUG: "false"
+  DATABASE_URL: "postgres://user:pass@db:5432/app"
