@@ -102,3 +102,16 @@ variable "parameter_group_family_rds" {
   type    = string
   default = "postgres15"
 }
+
+
+variable "allowed_cidr_blocks" {
+  description = "CIDR blocks allowed to access RDS"
+  type        = list(string)
+  default     = ["10.0.0.0/16"]
+}
+
+variable "egress_cidr_blocks" {
+  description = "CIDR blocks allowed for outbound traffic"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
