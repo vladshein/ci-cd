@@ -135,6 +135,16 @@ module "rds" {
   }
 } 
 
+module "prometheus" {
+  source    = "./modules/prometheus"
+  namespace = "monitoring"
+}
+
+module "grafana" {
+  source    = "./modules/grafana"
+  namespace = "monitoring"
+}
+
 /*
 module "aurora" {
   source = "./modules/rds"

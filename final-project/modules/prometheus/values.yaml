@@ -1,0 +1,7 @@
+grafana:
+  enabled: true
+  adminUser:
+  adminPassword:
+  service:
+    type: LoadBalancer
+
