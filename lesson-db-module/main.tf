@@ -135,7 +135,8 @@ module "rds" {
   }
 } 
 
-module "rds" {
+/*
+module "aurora" {
   source = "./modules/rds"
 
   name                       = "myapp-db"
@@ -175,3 +176,4 @@ module "rds" {
     Project     = "myapp"
   }
 }
+*/
