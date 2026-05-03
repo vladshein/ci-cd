@@ -3,14 +3,14 @@ applications:
     namespace: default
     project: default
     source:
-      repoURL: <https://github.com/vladshein/ci-cd.git>
+      repoURL: https://github.com/vladshein/ci-cd.git
       path: django-chart
       targetRevision: main
       helm:
         valueFiles:
           - values.yaml
     destination:
-      server: <https://kubernetes.default.svc>
+      server: https://kubernetes.default.svc
       namespace: default
     syncPolicy:
       automated:
@@ -19,7 +19,7 @@ applications:
 
 repositories:
   - name: django-app
-    url: <https://github.com/vladshein/ci-cd.git>
+    url: https://github.com/vladshein/ci-cd.git
     username: YOUR_USERNAME
     password: YOUR_PASS
 

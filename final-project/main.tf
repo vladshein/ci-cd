@@ -116,8 +116,8 @@ module "rds" {
   instance_class             = "db.t3.medium"
   allocated_storage          = 20
   db_name                    = "myapp"
-  username                   = "YOUR_NAME"
-  password                   = "YOUR_PASS"
+  username                   = var.db_username
+  password                   = var.db_password
   subnet_private_ids         = module.vpc.private_subnets
   subnet_public_ids          = module.vpc.public_subnets
   publicly_accessible        = true
